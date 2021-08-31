@@ -34,6 +34,6 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
-        repository: certmichelin/redscan-nuclei-misconfiguration/redscan-nuclei-misconfiguration
+        repository: certmichelin/redscan-nuclei-technologies/redscan-nuclei-technologies
         tags: latest
         
