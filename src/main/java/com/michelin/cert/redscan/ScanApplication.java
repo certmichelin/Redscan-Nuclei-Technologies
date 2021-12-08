@@ -193,14 +193,15 @@ public class ScanApplication {
 
   private void raiseVulnerability(int severity, HttpService service, String vulnName, String title, String message) {
     Vulnerability vuln = new Vulnerability(
+            Vulnerability.generateId("redscan-nuclei-technologies", vulnName, service.getDomain(), service.getPort(), service.isSsl() ? "https" : "http"),
             severity,
-            vulnName,
             title,
             message,
             service.toUrl(),
-            String.format("%s%s", service.getDomain(), service.getPort(), service.isSsl() ? "https" : "http"),
-            "redscan-nuclei-technologies");
-
+            "redscan-nuclei-technologies",
+            new String[]{"Footprint"}
+    );
+    
     rabbitTemplate.convertAndSend(vuln.getFanoutExchangeName(), "", vuln.toJson());
   }
 
